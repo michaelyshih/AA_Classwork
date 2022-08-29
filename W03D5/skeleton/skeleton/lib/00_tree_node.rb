@@ -77,6 +77,13 @@ class PolyTreeNode
         nil
     end
 
+    def trace_path_back
+        nodes = []
+
+    end
+
+
+
 end
 
 # class Queue

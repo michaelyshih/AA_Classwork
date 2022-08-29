@@ -9,8 +9,8 @@ class KnightPathFinder
     end
 
     def initialize(pos)
-        @pos = pos
-        @root = KnightPathFinder.root_node(@pos)
+        @start_pos = pos
+        @root = KnightPathFinder.root_node(@start_pos)
         @considered_pos = [] #if you've moved into that pos already put it inside @considered pos
     end
 
@@ -74,10 +74,29 @@ class KnightPathFinder
 
     end
 
+    def find_path(end_pos)
+        #dfs to find node with the given end position
+        result_node = self.root.dfs(end_pos)
+
+        trace_path_back(result_node)
+    end
+
+    def trace_path_back(node)
+        # nodes = []
+        return [node.value] if node.parent.nil?
+        # nodes.unshift()
+        trace_path_back(node.parent) + [node.value]
+
+    end
+
+
+
 end
+
+
 
 
 p a = KnightPathFinder.new([0,0])
 p a.build_move_tree
-p a
 
+p a.find_path([7,7])
